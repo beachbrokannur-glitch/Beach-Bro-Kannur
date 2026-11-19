@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beach Bro – Rent &amp; Relax</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0aa5c8;--acc:#ff6247;--teal-d:#0b6e8a;--coral:#ff6247;--sun:#ffc93c;--bg:#fffaf0;--card:#fff;--ink:#0b3b4a;--mut:#5c7f8a;--line:#e6dcc4;--soft:#e6f7fb;--warn:#fff1d6;--bad:#ffe3dd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b2530;--card:#12384a;--ink:#eaf7fb;--mut:#9cc4d0;--line:#235468;--soft:#0f4357;--warn:#4a3d12;--bad:#552a22;--teal-d:#6fd3ea}}
+:root[data-theme="dark"]{--bg:#0b2530;--card:#12384a;--ink:#eaf7fb;--mut:#9cc4d0;--line:#235468;--soft:#0f4357;--warn:#4a3d12;--bad:#552a22;--teal-d:#6fd3ea}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:600 15px/1.45 Nunito,system-ui,sans-serif}
+header{padding:14px 16px 0;max-width:980px;margin:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font:400 34px Pacifico,cursive;color:var(--teal);line-height:1}.logo b{color:var(--acc);font-weight:400}
+.tag{font-size:12px;letter-spacing:.18em;color:var(--teal-d);font-weight:800;border-top:2px solid var(--teal);padding-top:2px;margin-top:2px;display:inline-block}
+nav{max-width:980px;margin:12px auto 0;padding:0 12px;display:flex;gap:6px;overflow-x:auto}
+nav button{border:0;background:var(--soft);color:var(--teal-d);padding:10px 14px;border-radius:999px;font:800 14px Nunito,sans-serif;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--teal);color:#fff}
+main{max-width:980px;margin:auto;padding:14px 12px 60px}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
+h2{font:400 24px Pacifico,cursive;color:var(--teal);margin:0 0 10px}
+h3{margin:0 0 8px;font-size:16px;color:var(--teal-d)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.stat{border-radius:16px;padding:14px;background:var(--soft)}
+.stat small{color:var(--mut);display:block}.stat strong{font-size:24px;font-weight:800}
+.stat.c{background:var(--bad)}.stat.y{background:var(--warn)}
+button.stat{border:2px solid transparent;text-align:left;font:inherit;color:inherit;cursor:pointer;width:100%}
+button.stat:hover{border-color:var(--teal)}button.stat:focus-visible{outline:3px solid var(--sun)}
+.stat em{display:block;font-style:normal;font-size:12px;color:var(--teal-d);margin-top:2px}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:600 15px Nunito,sans-serif}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--sun);outline-offset:1px}
+.row{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.btn{border:0;border-radius:12px;padding:11px 16px;font:800 14px Nunito,sans-serif;cursor:pointer;background:var(--teal);color:#fff;text-decoration:none;display:inline-block}
+.btn.co{background:var(--acc)}.btn.wa{background:#1c9c55}.btn.gh{background:var(--soft);color:var(--teal-d)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.items{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.stp{display:flex;align-items:center;gap:4px}
+.sb{width:42px;height:42px;flex:0 0 42px;border:0;border-radius:50%;background:var(--teal);color:#fff;font:800 24px/1 Nunito,sans-serif;cursor:pointer;padding:0}
+.sb[data-st="-1"]{background:var(--coral)}
+.sb:active{transform:scale(.92)}
+.it .stp input{width:46px;padding:8px 0;min-height:42px;text-align:center;-moz-appearance:textfield}
+.stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.it{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:14px;padding:10px}
+.it .e{font-size:26px}.it .n{flex:1;line-height:1.2}.it small{color:var(--mut);display:block}
+.it input{width:64px;text-align:center;padding:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--line);background:var(--bg);color:var(--ink);padding:9px 14px;border-radius:999px;font:800 14px Nunito,sans-serif;cursor:pointer}
+.chip.on{background:var(--sun);border-color:var(--sun);color:#3a2a00}
+.bar{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--teal)}
+.bar i.low{background:var(--coral)}
+.rent{border:2px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px}
+.rent.soon{background:var(--warn);border-color:var(--sun)}.rent.over{background:var(--bad);border-color:var(--coral)}
+.rent .top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.timer{font:800 22px Nunito,sans-serif;font-variant-numeric:tabular-nums}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.alert{background:var(--bad);border:2px solid var(--coral);border-radius:14px;padding:10px 14px;margin-bottom:14px;display:none}
+.alert.on{display:block}
+.demo{background:var(--warn);border:2px dashed var(--sun);border-radius:12px;padding:10px;margin-top:10px;display:none}
+.demo.on{display:block}
+.ok{color:#1c9c55;font-weight:800}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+.scroll{overflow-x:auto}
+.empty{color:var(--mut);padding:10px 0}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+#modal.on{display:flex}#modal .card{max-width:380px;width:100%;margin:0}
+@media (prefers-reduced-motion:no-preference){.alert.on{animation:pulse 2s ease-in-out infinite}@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(255,98,71,.2)}}}
+nav button{display:inline-flex;align-items:center;gap:6px}
+.ni{font-size:16px}
+#gDots{display:flex;gap:14px;justify-content:center;margin:14px 0}#gDots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--teal);display:block}#gDots i.f{background:var(--teal)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:290px;margin:0 auto}.pad button{min-height:62px;border:0;border-radius:16px;background:var(--soft);color:var(--ink);font:800 24px Nunito,sans-serif;cursor:pointer}.pad button:active{background:var(--sun)}
+.ksrow{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}.ksrow input,.ksrow select{flex:1 1 170px;width:auto}.ksrow .who{flex:1 1 150px;font-weight:800}
+#gate{position:fixed;inset:0;z-index:30;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));overflow:auto}
+#gate .card{max-width:420px;width:100%;margin:0}#gate .acts .btn{flex:1 1 42%}
+body.staff #dashGoSet,body.staff #v-set .card:not(#appearance){display:none}
+textarea{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:600 16px/1.45 Nunito,system-ui,sans-serif;resize:vertical}
+textarea:focus{outline:3px solid var(--sun);outline-offset:1px}
+#modal .card{max-height:92vh;overflow:auto}
+.sw{display:inline-block;width:16px;height:16px;border-radius:50%;margin-right:6px;vertical-align:-3px;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.pos{color:#1c9c55;font-weight:800}.neg{color:var(--coral);font-weight:800}
+@media (max-width:640px){
+header{padding:10px 12px 0;gap:8px}header svg{width:42px;height:42px}.logo{font-size:28px}
+nav{position:fixed;left:0;right:0;bottom:0;margin:0;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:2px solid var(--line);z-index:10;gap:2px;overflow:visible}
+nav button{flex:1 1 0;min-width:0;flex-direction:column;justify-content:center;gap:2px;border-radius:12px;padding:6px 2px;font-size:11px;line-height:1.1;text-align:center;white-space:normal;background:transparent}
+nav button.on{background:var(--teal)}
+.ni{font-size:20px}
+main{padding:10px 10px 110px}
+.card{padding:14px;border-radius:16px}
+h2{font-size:22px}
+input,select{font-size:16px;min-height:46px}
+.btn,.chip{min-height:44px}
+.acts .btn{flex:1 1 140px;text-align:center}
+.stat{padding:12px}.stat strong{font-size:20px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.items,.row{grid-template-columns:1fr}
+.rent .top{flex-direction:column;align-items:flex-start}
+.timer{font-size:24px}
+#modal{align-items:flex-end;padding:0}#modal .card{max-width:none;border-radius:20px 20px 0 0;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.scroll{overflow:visible}
+table,tbody,tr,td{display:block;width:100%}
+tr:has(th){display:none}
+tr{border:2px solid var(--line);border-radius:14px;padding:8px 12px;margin-bottom:10px}
+td{border:0;padding:5px 0;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:right}
+td::before{flex:0 0 36%;text-align:left;color:var(--mut);font-size:13px}
+td>input{width:62%!important;min-width:0!important;text-align:left!important}
+td>.btn{width:100%}
+#hist td:nth-child(1)::before{content:"Customer"}#hist td:nth-child(2)::before{content:"Items"}#hist td:nth-child(3)::before{content:"Fee"}#hist td:nth-child(4)::before{content:"Deposit"}
+#expList td:nth-child(1)::before{content:"Date"}#expList td:nth-child(2)::before{content:"Category"}#expList td:nth-child(3)::before{content:"Note"}#expList td:nth-child(4)::before{content:"Amount (₹)"}#expList td:nth-child(5)::before,#setT td:nth-child(6)::before,#durT td:nth-child(4)::before{display:none}
+#setT td:nth-child(1)::before{content:"Icon"}#setT td:nth-child(2)::before{content:"Product"}#setT td:nth-child(3)::before{content:"Total stock"}#setT td:nth-child(4)::before{content:"Price/hr"}#setT td:nth-child(5)::before{content:"Deposit"}
+#durT td:nth-child(1)::before{content:"Label"}#durT td:nth-child(2)::before{content:"Duration (hrs)"}#durT td:nth-child(3)::before{content:"Charged as (hrs)"}
+#dbList td:nth-child(1)::before{content:"Time"}#dbList td:nth-child(2)::before{content:"Details"}#dbList td:nth-child(3)::before{content:"Cash in"}#dbList td:nth-child(4)::before{content:"Cash out"}#dbList td:nth-child(5)::before{content:"Balance"}
+#dbList td{text-align:right}#dbList td:nth-child(2){text-align:right}
+}
+</style></head><body>
+<header>
+<svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true" style="color:var(--teal)"><circle cx="26" cy="22" r="11" fill="#ffc93c"/><path d="M4 34q7-8 11 0t11 0 11 0 11 0" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M8 44q6-6 9 0t9 0 9 0 9 0" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/></svg>
+<div><div class="logo">Beach <b>Bro</b></div><span class="tag">RENT &amp; RELAX</span></div>
+<button class="btn gh" id="themeBtn" aria-label="Change theme colours" style="margin-left:auto">🎨</button><button type="button" class="btn gh" id="who" style="display:none"></button>
+</header>
+<nav id="nav"></nav>
+<main>
+<div class="alert" id="sync" role="alert" style="display:none"></div>
+<div class="alert" id="alerts" role="status"></div>
+
+<section class="view" id="v-dash">
+<div class="grid" id="stats"></div><br>
+<div class="card"><h2>Inventory now</h2><div id="invbars"></div><div class="acts"><button class="btn" id="dashGoNew">New rental</button><button class="btn gh" id="dashGoSet">Stock &amp; prices</button></div></div>
+<div class="card"><h2>Out on the beach</h2><div id="dashRent"></div><div class="acts"><button class="btn gh" id="dashGoAct">Manage active rentals</button></div></div>
+</section>
+
+<section class="view" id="v-new">
+<div class="card"><h2>New rental</h2>
+<div class="row"><div><label for="cn">Customer name</label><input id="cn" autocomplete="off"></div>
+<div><label for="cp">WhatsApp number (with country code)</label><input id="cp" inputmode="tel" value="+91 "></div>
+<div><label for="ci">Civil ID / passport (optional)</label><input id="ci"></div>
+<div id="ckw" style="display:none"><label for="ck">Kiosk</label><select id="ck"></select></div></div>
+<label>Equipment</label><div class="items" id="pick"></div>
+<label>Rental duration</label><div class="chips" id="durs"></div>
+<div class="row"><div><label for="dep">Caution deposit (₹)</label><input id="dep" type="number" step="10" min="0"></div>
+<div><label>Rental fee</label><div class="timer" id="fee">₹0</div></div>
+<div><label>Total to collect</label><div class="timer" id="tot">₹0</div></div></div>
+<div id="err" style="color:var(--coral);margin-top:8px"></div>
+<h3 style="margin-top:16px">Verify customer</h3>
+<div class="acts" style="margin-top:0"><button class="btn wa" id="sendOtp">Send WhatsApp OTP</button><a class="btn gh" id="waOtp" target="_blank" rel="noopener" style="display:none">Open WhatsApp to send code</a></div>
+<div class="demo" id="demo"></div>
+<div class="row" style="margin-top:8px"><div><label for="otp">Enter 6-digit code from customer</label><input id="otp" inputmode="numeric" maxlength="6"></div>
+<div style="align-self:end"><button class="btn gh" id="verify">Verify code</button> <span id="vok" class="ok"></span></div></div>
+<div class="acts"><button class="btn co" id="start" disabled>Start rental</button></div>
+</div></section>
+
+<section class="view" id="v-act"><div class="card"><h2>Active rentals</h2><div id="actList"></div></div>
+<div class="card"><h2>History</h2><div class="scroll" id="hist"></div></div></section>
+
+<section class="view" id="v-day">
+<div class="card"><h2>Daybook</h2>
+<div class="acts" style="margin-top:0;align-items:center"><button class="btn gh" id="dbPrev" aria-label="Previous day" style="flex:0 0 52px">‹</button><input type="date" id="dbDate" aria-label="Daybook date" style="flex:1 1 150px;min-width:140px"><button class="btn gh" id="dbNext" aria-label="Next day" style="flex:0 0 52px">›</button><button class="btn" id="dbToday" style="flex:0 0 auto">Today</button></div></div>
+<div class="grid" id="dbStats"></div><br>
+<div class="card"><h3>Transactions</h3><div class="scroll" id="dbList"></div>
+<div class="acts"><a class="btn wa" id="dbShare" target="_blank" rel="noopener">Share day summary on WhatsApp</a></div></div>
+<div class="card"><label for="dbOpen" style="margin-top:0">Starting cash (₹)</label><input id="dbOpen" type="number" min="0" step="10" placeholder="0">
+<small style="color:var(--mut)">Cash you had in the drawer before the first entry. Opening balance of each day = this + everything before that day.</small></div></section>
+<section class="view" id="v-exp">
+<div class="card"><h2>Log an expense</h2>
+<div class="row"><div><label for="ec">Category</label><select id="ec"><option>Staff salary</option><option>DTPC Rent</option><option>Equipment repair</option><option>New equipment</option><option>Cleaning &amp; supplies</option><option>Transport</option><option>Other</option></select></div>
+<div><label for="ea">Amount (₹)</label><input id="ea" type="number" step="1" min="0"></div>
+<div><label for="ed">Date</label><input id="ed" type="date"></div>
+<div><label for="en">Note</label><input id="en" placeholder="e.g. Ahmed – November"></div></div>
+<div class="acts"><button class="btn" id="addExp">Add expense</button></div></div>
+<div class="grid" id="expStats"></div><br>
+<div class="card"><h2>Expense log</h2><div class="scroll" id="expList"></div></div></section>
+
+<section class="view" id="v-set"><div class="card" id="appearance"><h2>Appearance</h2>
+<label style="margin-top:0">Theme colour</label><div class="chips" id="pals"></div>
+<label>Mode</label><div class="chips" id="modes"></div></div>
+<div class="card"><h2>WhatsApp messages</h2>
+<label style="margin-top:0">Language for OTP and reminder notes</label><div class="chips" id="langs"></div>
+<label>Sample reminder</label><div id="langPrev" lang="ml" style="white-space:pre-wrap;background:var(--soft);border-radius:12px;padding:12px;font-weight:600"></div>
+<h3 style="margin-top:16px">Edit message templates</h3><p style="color:var(--mut);margin:0 0 4px">Placeholders fill in for each customer: {name} {items} {time} {mins} {deposit} {code}</p><div id="tpls"></div></div>
+<div class="card" id="ksCard"><h2>Kiosks &amp; staff</h2>
+<h3>Kiosks</h3><div id="ksList"></div>
+<div class="row"><div><label for="kn">New kiosk name</label><input id="kn" placeholder="e.g. Kiosk 5 – North beach"></div></div>
+<div class="acts"><button class="btn" id="addK">Add kiosk</button></div>
+<h3 style="margin-top:18px">Staff logins</h3>
+<p style="color:var(--mut);margin:0 0 8px">Create each staff member with a 4-digit code and a kiosk. Staff open the app, enter their code, and see only their kiosk. Codes are stored scrambled and cannot be viewed; to change one, set a new code.</p>
+<div class="row"><div><label for="sn">Staff name</label><input id="sn" autocomplete="off"></div><div><label for="sp">4-digit code</label><input id="sp" inputmode="numeric" maxlength="4" autocomplete="off"></div><div><label for="sk">Kiosk</label><select id="sk"></select></div></div>
+<div id="sErr" style="color:var(--coral);margin-top:8px"></div>
+<div class="acts"><button class="btn" id="addS">Create staff</button></div>
+<div id="stList" style="margin-top:12px"></div></div>
+<div class="card"><h2>Stock &amp; prices</h2><p style="color:var(--mut)">Change totals, hourly prices and deposits. Saved on this device.</p>
+<div class="scroll"><table id="setT"></table></div>
+<h3 style="margin-top:18px">Add a new product</h3>
+<div class="row"><div><label for="pn">Product name</label><input id="pn" placeholder="e.g. Beach tent"></div>
+<div><label for="pe">Icon (emoji)</label><input id="pe" maxlength="4" placeholder="⛺"></div>
+<div><label for="pt">Total stock</label><input id="pt" type="number" min="0" step="1"></div>
+<div><label for="pp">Price per hour (₹)</label><input id="pp" type="number" min="0" step="1"></div>
+<div><label for="pd">Caution deposit (₹)</label><input id="pd" type="number" min="0" step="10"></div></div>
+<div id="pErr" style="color:var(--coral);margin-top:8px"></div>
+<div class="acts"><button class="btn" id="addProd">Add product</button></div>
+<h3 style="margin-top:22px">Rental timing</h3>
+<p style="color:var(--mut);margin:0 0 6px">These are the duration buttons staff see in New rental. “Charged as” is the number of hours the price is based on, so you can offer a discount (for example, a full day of 8 hours charged as 6).</p>
+<div class="scroll"><table id="durT"></table></div>
+<div class="row"><div><label for="dl">Button label</label><input id="dl" placeholder="e.g. 30 minutes"></div>
+<div><label for="dh">Duration (hours)</label><input id="dh" type="number" min="0.25" step="0.25" placeholder="0.5"></div>
+<div><label for="dm">Charged as (hours)</label><input id="dm" type="number" min="0" step="0.25" placeholder="same as duration"></div></div>
+<div id="dErr" style="color:var(--coral);margin-top:8px"></div>
+<div class="acts"><button class="btn" id="addDur">Add duration</button></div>
+<h3 style="margin-top:22px">Business WhatsApp (optional)</h3>
+<p style="color:var(--mut);margin:0 0 6px">Reminders open WhatsApp with the message ready to send.</p>
+</div></section>
+</main>
+
+<div id="gate"><div class="card"><div class="logo">Beach <b>Bro</b></div><span class="tag">RENT &amp; RELAX</span><h2 id="gT" style="margin-top:16px">Connecting…</h2><p id="gP" style="color:var(--mut)">Signing you in.</p><div class="acts" id="gA"></div>
+<div id="gPad" style="display:none"><div id="gDots" aria-live="polite"></div><div class="pad" id="gKeys"></div></div></div></div>
+<div id="modal"><div class="card" id="mbody"></div></div>
+
+<script>
+(function(){
+var KEY='beachbro_v1';
+var DEF={inv:[
+{id:'chair',n:'Beach chair',e:'🪑',t:40,p:50,d:200},
+{id:'mat',n:'Beach mat',e:'🧺',t:30,p:30,d:100},
+{id:'jacket',n:'Water safety jacket',e:'🦺',t:25,p:50,d:300},
+{id:'umb',n:'Umbrella',e:'⛱️',t:20,p:80,d:300},
+{id:'board',n:'Bodyboard',e:'🏄',t:12,p:100,d:500},
+{id:'snork',n:'Snorkel set',e:'🤿',t:10,p:70,d:400}],rentals:[],exp:[],cur:'INR',half:1,durs:[{h:0.5,l:'30 minutes',m:0.5},{h:1,l:'1 hour',m:1},{h:1.5,l:'1.5 hours',m:1.5},{h:2,l:'2 hours',m:2},{h:2.5,l:'2.5 hours',m:2.5},{h:3,l:'3 hours',m:3},{h:4,l:'4 hours',m:4},{h:8,l:'Full day',m:6}]};
+var S;
+function load(){try{S=JSON.parse(localStorage.getItem(KEY));}catch(e){S=null}
+ if(!S||!S.inv){S=JSON.parse(JSON.stringify(DEF));}
+ if(!S.durs||!S.durs.length)S.durs=JSON.parse(JSON.stringify(DEF.durs));
+ if(!S.half){DEF.durs.forEach(function(d){if(!S.durs.some(function(q){return q.h===d.h}))S.durs.push(JSON.parse(JSON.stringify(d)))});S.durs.sort(function(a,b){return a.h-b.h});S.half=1;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+ if(S.cur!=='INR'){var k=function(v){return Math.round((v||0)*100)};S.inv.forEach(function(x){x.p=k(x.p);x.d=k(x.d)});S.rentals.forEach(function(r){r.fee=k(r.fee);r.dep=k(r.dep);r.ded=k(r.ded)});S.exp.forEach(function(x){x.amt=k(x.amt)});S.cur='INR';try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}}
+var NAMES={},ME={id:null,name:'',owner:false},KF='K1',U=null,DBN=null,dbh=null,started=false,Q=Promise.resolve(),pend=0,cT=0,shadow={r:{},e:{},c:''},cfgDirty=false,cfgReady=false,PLAT={id:null,name:'',admin:false},STAFFID='',ownerSubs=false,LOCAL=false,CFG=['inv','durs','tpl','lang','openBal','half','cur','kiosks'];
+var DEFK=[{id:'K1',name:'Kiosk 1',on:1},{id:'K2',name:'Kiosk 2',on:1},{id:'K3',name:'Kiosk 3',on:1},{id:'K4',name:'Kiosk 4',on:1}];
+function KS(){return (S.kiosks&&S.kiosks.length)?S.kiosks:DEFK}
+function kfind(id){return KS().filter(function(k){return k.id===id})[0]}
+function kioskOn(id){var k=kfind(id);return !k||k.on!==0}
+function kname(id){if(id==='all')return 'All kiosks';var k=kfind(id);return k?k.name:String(id)}
+function vis(r){return KF==='all'||r.kiosk===KF}
+function rentKiosk(){return ME.owner?document.getElementById('ck').value:KF}
+function cfgJson(){var o={};CFG.forEach(function(k){if(S[k]!==undefined)o[k]=S[k]});return JSON.stringify(o)}
+function syncMsg(m){var b=document.getElementById('sync');b.style.display=m?'block':'none';b.textContent=m||''}
+function wr(f){pend++;Q=Q.then(f).then(function(){pend--;syncMsg('')},function(e){pend--;syncMsg('Could not save. Check your internet connection and try again ('+((e&&e.code)||'error')+').')})}
+function flushCfg(){cfgDirty=false;var c=cfgJson();if(ME.owner&&dbh&&cfgReady&&c!==shadow.c){shadow.c=c;wr(function(){return dbh.doc('config/main').set(JSON.parse(c))})}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(Object.assign({},S,LOCAL?{}:{rentals:[],exp:[]})))}catch(e){}
+ if(!dbh)return;
+ if(ME.owner){cfgDirty=true;clearTimeout(cT);cT=setTimeout(flushCfg,500)}
+ S.rentals.forEach(function(r){var j=JSON.stringify(r);if(shadow.r[r.id]!==j){shadow.r[r.id]=j;wr(function(){return dbh.doc('rentals/'+r.id).set(JSON.parse(j))})}});
+ if(ME.owner){S.exp.forEach(function(x){var j=JSON.stringify(x);if(shadow.e[x.id]!==j){shadow.e[x.id]=j;wr(function(){return dbh.doc('expenses/'+x.id).set(JSON.parse(j))})}});
+  Object.keys(shadow.e).forEach(function(id){if(!S.exp.some(function(x){return x.id===id})){delete shadow.e[id];wr(function(){return dbh.doc('expenses/'+id).delete()})}})}}
+load();
+var $=function(i){return document.getElementById(i)};
+var m3=function(n){n=Math.round((n||0)*100)/100;return (n<0?'-':'')+'₹'+Math.abs(n).toLocaleString('en-IN',{maximumFractionDigits:2})};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var ld=function(t){var d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+var today=function(){return ld(Date.now())};
+
+var hours=1,otpCode=null,verified=false,verPhone='';
+var inv=function(id){return S.inv.filter(function(x){return x.id===id})[0]};
+function used(id){var u=0;S.rentals.forEach(function(r){if(r.status==='active')u+=(r.items[id]||0)});return u}
+function hrFactor(h){var d=S.durs.filter(function(x){return x.h===h})[0];return d?d.m:h}
+function itemsText(r){return S.inv.filter(function(x){return r.items[x.id]}).map(function(x){return r.items[x.id]+' × '+x.n}).join(', ')}
+function digits(p){return p.replace(/\D/g,'')}
+function wa(phone,msg){return 'https://wa.me/'+digits(phone)+'?text='+encodeURIComponent(msg)}
+function tm(ts){return new Date(ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}
+function clock(ms){var s=Math.max(0,Math.floor(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60);s%=60;return (h?h+':':'')+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+
+// nav
+var TABS=[['dash','Dashboard','🏠'],['new','New rental','➕'],['act','Active rentals','⏱️'],['day','Daybook','📒'],['exp','Expenses','💸'],['set','Stock & prices','📦']];
+function buildNav(){var T=ME.owner?TABS:TABS.filter(function(t){return t[0]==='dash'||t[0]==='new'||t[0]==='act'});$('nav').innerHTML=T.map(function(t){return '<button data-t="'+t[0]+'"><span class="ni">'+t[2]+'</span><span>'+t[1]+'</span></button>'}).join('')}buildNav();
+function go(t){TABS.forEach(function(x){$('v-'+x[0]).classList.toggle('on',x[0]===t)});
+ [].forEach.call($('nav').children,function(b){b.classList.toggle('on',b.dataset.t===t)});tick();if(t==='day')renderDay();if(t==='exp')renderExp();if(t==='set')renderSet();}
+$('nav').onclick=function(e){var b=e.target.closest('[data-t]');if(b)go(b.dataset.t)};
+
+// new rental form
+function drawPick(){
+ $('pick').innerHTML=S.inv.map(function(x){var a=x.t-used(x.id);
+  return '<div class="it"><span class="e">'+x.e+'</span><div class="n">'+esc(x.n)+'<small>'+m3(x.p)+'/hr · '+a+' free</small></div><div class="stp"><button type="button" class="sb" data-st="-1" data-for="'+x.id+'" aria-label="Remove one '+esc(x.n)+'">−</button><input type="number" min="0" max="'+a+'" value="0" data-i="'+x.id+'" aria-label="'+esc(x.n)+' quantity"><button type="button" class="sb" data-st="1" data-for="'+x.id+'" aria-label="Add one '+esc(x.n)+'">+</button></div></div>'}).join('');
+ if(!S.durs.some(function(d){return d.h===hours}))hours=S.durs[0].h;
+ $('durs').innerHTML=S.durs.map(function(d){return '<button type="button" class="chip'+(d.h===hours?' on':'')+'" data-h="'+d.h+'">'+esc(d.l)+'</button>'}).join('');
+}
+function sel(){var o={};[].forEach.call($('pick').querySelectorAll('input'),function(i){var q=parseInt(i.value)||0;if(q>0)o[i.dataset.i]=q});return o}
+function calc(auto){var o=sel(),fee=0,dep=0;Object.keys(o).forEach(function(k){var x=inv(k);fee+=o[k]*x.p*hrFactor(hours);dep+=o[k]*x.d});
+ if(auto)$('dep').value=dep;$('fee').textContent=m3(fee)+'';$('tot').textContent=m3(fee+(parseFloat($('dep').value)||0))+'';return fee}
+$('pick').oninput=function(){calc(true)};
+$('pick').onclick=function(e){var b=e.target.closest('[data-st]');if(!b)return;var i=$('pick').querySelector('input[data-i="'+b.dataset.for+'"]'),v=(parseInt(i.value)||0)+(+b.dataset.st);i.value=Math.max(0,Math.min(+i.max,v));calc(true)};
+$('dep').oninput=function(){calc(false)};
+$('durs').onclick=function(e){if(e.target.dataset.h){hours=+e.target.dataset.h;drawPick2();}};
+function drawPick2(){var keep=sel();drawPick();[].forEach.call($('pick').querySelectorAll('input'),function(i){if(keep[i.dataset.i])i.value=keep[i.dataset.i]});calc(true)}
+$('cp').oninput=function(){verified=false;$('vok').textContent='';$('start').disabled=true};
+$('sendOtp').onclick=function(){
+ var p=$('cp').value;if(digits(p).length<8){$('err').textContent='Enter a valid WhatsApp number with country code.';return}
+ $('err').textContent='';otpCode=String(Math.floor(100000+Math.random()*900000));verified=false;verPhone=p;
+ var msg=otpMsg(otpCode);
+ var a=$('waOtp');a.href=wa(p,msg);a.style.display='inline-block';
+ var d=$('demo');d.classList.add('on');d.innerHTML='<b>Demo mode:</b> no WhatsApp server is connected, so the code is shown here: <b>'+otpCode+'</b>. Tap “Open WhatsApp to send code” to send it from your own WhatsApp. A live version sends it automatically through the WhatsApp Business API.'};
+$('verify').onclick=function(){
+ if(!otpCode){$('err').textContent='Send the code first.';return}
+ if($('otp').value.trim()===otpCode&&$('cp').value===verPhone){verified=true;$('vok').textContent='✔ Verified';$('err').textContent='';$('start').disabled=false}
+ else{verified=false;$('vok').textContent='';$('err').textContent='Code does not match. Check the number and try again.'}};
+$('start').onclick=function(){
+ var o=sel();if(!$('cn').value.trim()){$('err').textContent='Enter the customer’s name.';return}
+ if(!Object.keys(o).length){$('err').textContent='Choose at least one item.';return}
+ for(var k in o){if(o[k]>inv(k).t-used(k)){$('err').textContent='Not enough '+inv(k).n+' in stock.';return}}
+ var fee=calc(false),now=Date.now();
+ S.rentals.unshift({id:'R'+now,kiosk:rentKiosk(),by:ME.id,name:$('cn').value.trim(),phone:$('cp').value.trim(),cid:$('ci').value.trim(),items:o,hours:hours,start:now,end:now+hours*3600000,fee:fee,dep:parseFloat($('dep').value)||0,status:'active',depState:'held',ded:0,n1:0,n2:0});
+ save();otpCode=null;verified=false;$('cn').value='';$('ci').value='';$('cp').value='+91 ';$('otp').value='';$('vok').textContent='';$('start').disabled=true;$('demo').classList.remove('on');$('waOtp').style.display='none';
+ drawPick();calc(true);go('act')};
+
+// rentals
+var DEFT={
+soonEn:'Hi {name}, your Beach Bro rental ends at {time} ({mins} min left). Reply to extend, or return the equipment to get your {deposit} deposit back. 🏖️',
+overEn:'Hi {name}, your Beach Bro rental ({items}) ended at {time}. Please return the equipment so we can refund your deposit of {deposit}. Want more time? Reply here! 🏖️',
+soonMl:'നമസ്കാരം {name}, നിങ്ങളുടെ Beach Bro വാടക {time}-ന് അവസാനിക്കും ({mins} മിനിറ്റ് ബാക്കി). സമയം നീട്ടാൻ ഈ സന്ദേശത്തിന് മറുപടി നൽകൂ, അല്ലെങ്കിൽ സാധനങ്ങൾ തിരികെ നൽകി {deposit} ഡെപ്പോസിറ്റ് തിരികെ വാങ്ങൂ. 🏖️',
+overMl:'നമസ്കാരം {name}, നിങ്ങളുടെ Beach Bro വാടക ({items}) {time}-ന് അവസാനിച്ചു. ദയവായി സാധനങ്ങൾ തിരികെ ഏൽപ്പിക്കൂ, {deposit} ഡെപ്പോസിറ്റ് തിരികെ ലഭിക്കും. കൂടുതൽ സമയം വേണമെങ്കിൽ ഈ സന്ദേശത്തിന് മറുപടി നൽകൂ! 🏖️',
+otpEn:'Beach Bro 🏖️ Your verification code is {code}. Show it to our staff to start your rental.',
+otpMl:'Beach Bro 🏖️ നിങ്ങളുടെ സ്ഥിരീകരണ കോഡ് {code}. വാടക തുടങ്ങാൻ ഇത് ഞങ്ങളുടെ ജീവനക്കാരെ കാണിക്കൂ.'};
+function getT(k){return (S.tpl&&S.tpl[k]&&S.tpl[k].trim())?S.tpl[k]:DEFT[k]}
+function fill(t,v){return t.replace(/\{(\w+)\}/g,function(m,k){return v[k]!==undefined?v[k]:m})}
+function remMsg(r,left){var L=S.lang||'both',k=left<=0?'over':'soon',v={name:r.name,items:itemsText(r),time:tm(r.end),mins:Math.max(1,Math.ceil(left/60000)),deposit:m3(r.dep)},
+ en=fill(getT(k+'En'),v),ml=fill(getT(k+'Ml'),v);return L==='en'?en:L==='ml'?ml:ml+'\n\n'+en}
+function otpMsg(c){var L=S.lang||'both',v={code:c},en=fill(getT('otpEn'),v),ml=fill(getT('otpMl'),v);return L==='en'?en:L==='ml'?ml:ml+'\n\n'+en}
+var LANGS=[['ml','മലയാളം'],['en','English'],['both','Malayalam + English']];
+var TPLS=[['soonMl','Time almost up – Malayalam'],['soonEn','Time almost up – English'],['overMl','Time is up – Malayalam'],['overEn','Time is up – English'],['otpMl','OTP – Malayalam'],['otpEn','OTP – English']];
+function updPrev(){var smp={name:'Ahmed',items:{},end:Date.now()+600000,dep:200};smp.items[S.inv[0].id]=2;$('langPrev').textContent=remMsg(smp,600000)}
+function renderLang(){var L=S.lang||'both';
+ $('langs').innerHTML=LANGS.map(function(l){return '<button type="button" class="chip'+(L===l[0]?' on':'')+'" data-l="'+l[0]+'">'+l[1]+'</button>'}).join('');
+ $('tpls').innerHTML=TPLS.map(function(t){return '<label for="t_'+t[0]+'">'+t[1]+' <button type="button" class="btn gh" data-tr="'+t[0]+'" style="min-height:30px;padding:4px 10px;font-size:12px">Reset</button></label><textarea id="t_'+t[0]+'" rows="3" data-tk="'+t[0]+'">'+esc(getT(t[0]))+'</textarea>'}).join('');
+ updPrev()}
+$('tpls').oninput=function(e){var k=e.target.dataset.tk;if(!k)return;S.tpl=S.tpl||{};S.tpl[k]=e.target.value;save();updPrev()};
+$('tpls').onclick=function(e){var k=e.target.dataset.tr;if(!k)return;if(S.tpl)delete S.tpl[k];save();renderLang()};
+function openRem(r){var cur=S.lang||'both';
+ function gen(l){var o=S.lang;S.lang=l;var m=remMsg(r,r.end-Date.now());S.lang=o;return m}
+ $('mbody').innerHTML='<h2>WhatsApp reminder</h2><p style="margin:0 0 8px"><b>'+esc(r.name)+'</b> · '+esc(r.phone)+'</p><div class="chips" id="rl">'+LANGS.map(function(l){return '<button type="button" class="chip'+(cur===l[0]?' on':'')+'" data-l="'+l[0]+'">'+l[1]+'</button>'}).join('')+'</div><label for="rtxt">Message – edit it or add your own note</label><textarea id="rtxt" rows="9"></textarea><div class="acts"><a class="btn wa" id="remGo" target="_blank" rel="noopener">Send on WhatsApp</a><button type="button" class="btn gh" id="remNo">Cancel</button></div>';
+ var ta=$('rtxt');ta.value=gen(cur);
+ function link(){$('remGo').href=wa(r.phone,ta.value)}link();ta.oninput=link;
+ $('rl').onclick=function(e){var b=e.target.closest('[data-l]');if(!b)return;ta.value=gen(b.dataset.l);link();[].forEach.call($('rl').children,function(c){c.classList.toggle('on',c===b)})};
+ $('remNo').onclick=function(){$('modal').classList.remove('on')};
+ $('remGo').onclick=function(){setTimeout(function(){$('modal').classList.remove('on')},400)};
+ $('modal').classList.add('on')}
+$('langs').onclick=function(e){var b=e.target.closest('[data-l]');if(b){S.lang=b.dataset.l;save();renderLang()}};
+function rentHTML(r,full){
+ var left=r.end-Date.now(),cls=left<=0?'over':(left<=600000?'soon':'');
+ var msg=remMsg(r,left);
+ var h='<div class="rent '+cls+'"><div class="top"><div><b>'+esc(r.name)+'</b>'+(full?' <a href="tel:+'+digits(r.phone)+'" style="color:var(--teal-d);text-decoration:none">📞 '+esc(r.phone)+'</a>':'')+'<br><small>'+esc(itemsText(r))+'</small></div><div class="timer">'+(left<=0?'Over by '+clock(-left):clock(left))+'</div></div><small>'+(r.kiosk?kname(r.kiosk)+' · ':'')+(NAMES[r.by]?esc(NAMES[r.by])+' · ':'')+tm(r.start)+' → '+tm(r.end)+' · fee '+m3(r.fee)+' · deposit held '+m3(r.dep)+'</small>';
+ if(full)h+='<div class="acts"><a class="btn" href="tel:+'+digits(r.phone)+'">📞 Call</a><button type="button" class="btn wa" data-rem="'+r.id+'">WhatsApp reminder</button><button class="btn gh" data-x="'+r.id+'" data-mins="30">+30 min</button><button class="btn gh" data-x="'+r.id+'" data-mins="60">+1 hour</button><button class="btn co" data-r="'+r.id+'">Return &amp; refund</button></div>';
+ return h+'</div>'}
+function renderAct(){var a=S.rentals.filter(function(r){return r.status==='active'&&vis(r)}).sort(function(x,y){return x.end-y.end});
+ $('actList').innerHTML=a.length?a.map(function(r){return rentHTML(r,true)}).join(''):'<div class="empty">No active rentals. Start one from “New rental”.</div>';
+ var hs=S.rentals.filter(function(r){return r.status!=='active'&&vis(r)}).slice(0,30);
+ $('hist').innerHTML=hs.length?'<table><tr><th>Customer</th><th>Items</th><th>Fee</th><th>Deposit</th></tr>'+hs.map(function(r){return '<tr><td>'+esc(r.name)+'</td><td>'+esc(itemsText(r))+'</td><td>'+m3(r.fee)+'</td><td>'+(r.ded?'Refunded '+m3(r.dep-r.ded)+' (kept '+m3(r.ded)+')':'Refunded '+m3(r.dep))+'</td></tr>'}).join('')+'</table>':'<div class="empty">Returned rentals will appear here.</div>'}
+$('actList').onclick=function(e){var t=e.target;
+ if(t.dataset.rem){var rr=S.rentals.filter(function(q){return q.id===t.dataset.rem})[0];if(rr)openRem(rr);return}
+ if(t.dataset.x){var r=S.rentals.filter(function(q){return q.id===t.dataset.x})[0];var add=0;Object.keys(r.items).forEach(function(k){add+=r.items[k]*inv(k).p});
+  var mn=+t.dataset.mins||60;r.end+=mn*60000;r.fee+=add*mn/60;(r.ext=r.ext||[]).push({t:Date.now(),amt:add*mn/60});r.n1=0;r.n2=0;save();tick()}
+ if(t.dataset.r){var r2=S.rentals.filter(function(q){return q.id===t.dataset.r})[0];
+  $('mbody').innerHTML='<h2>Return items</h2><p><b>'+esc(r2.name)+'</b> · deposit '+m3(r2.dep)+'</p><label for="ded">Deduct for damage or lost items (₹)</label><input id="ded" type="number" min="0" max="'+r2.dep+'" step="10" value="0"><div class="acts"><button class="btn co" id="okR">Confirm return</button><button class="btn gh" id="noR">Cancel</button></div>';
+  $('modal').classList.add('on');$('noR').onclick=function(){$('modal').classList.remove('on')};
+  $('okR').onclick=function(){var d=Math.min(r2.dep,Math.max(0,parseFloat($('ded').value)||0));r2.status='returned';r2.ded=d;r2.returnedAt=Date.now();save();$('modal').classList.remove('on');tick()}}};
+
+// alerts + dashboard
+var beeped={};
+function beep(){try{var c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.value=.15;o.start();o.stop(c.currentTime+.4)}catch(e){}}
+function renderDash(){
+ var act=S.rentals.filter(function(r){return r.status==='active'&&vis(r)}),td=today();
+ var rev=0,held=0,exp=0;
+ S.rentals.forEach(function(r){if(!vis(r))return;if(ld(r.start)===td)rev+=r.fee;if(r.status==='active')held+=r.dep;else if(ld(r.returnedAt)===td)rev+=r.ded});
+ S.exp.forEach(function(x){if(x.date===td)exp+=x.amt});
+ var over=act.filter(function(r){return r.end<=Date.now()}).length;
+ $('stats').innerHTML=[['Active rentals',act.length,'','act','Active rentals'],['Rental income today',m3(rev)+'','','act','Rentals & history'],['Deposits held',m3(held)+'','y','act','Active rentals'],['Expenses today',m3(exp)+'','','exp','Expenses'],['Net today',m3(rev-exp)+'','','exp','Expenses'],['Past due',over,over?'c':'','act','Send reminders']].filter(function(s){return ME.owner||s[3]!=='exp'}).map(function(s){return '<button type="button" class="stat '+s[2]+'" data-go="'+s[3]+'"><small>'+s[0]+'</small><strong>'+s[1]+'</strong><em>Open '+s[4]+' ›</em></button>'}).join('');
+ $('invbars').innerHTML=S.inv.map(function(x){var u=used(x.id),a=x.t-u,pc=Math.round(a/x.t*100);return '<div style="margin-bottom:12px"><b>'+x.e+' '+esc(x.n)+'</b> <span style="float:right">'+a+' free of '+x.t+' ('+u+' out)</span><div class="bar"><i class="'+(pc<=20?'low':'')+'" style="width:'+pc+'%"></i></div></div>'}).join('');
+ $('dashRent').innerHTML=act.length?act.sort(function(x,y){return x.end-y.end}).map(function(r){return rentHTML(r,false)}).join(''):'<div class="empty">Nothing out right now. Quiet beach.</div>'}
+function checkAlerts(){
+ var act=S.rentals.filter(function(r){return r.status==='active'&&vis(r)}),list=[];
+ act.forEach(function(r){var left=r.end-Date.now();
+  if(left<=600000){list.push(r);var k=r.id+(left<=0?'e':'s')+r.end;if(!beeped[k]){beeped[k]=1;beep()}}});
+ var el=$('alerts');el.classList.toggle('on',list.length>0);
+ el.innerHTML=list.length?'<b>⏰ Time check</b><br>'+list.map(function(r){var left=r.end-Date.now();return esc(r.name)+(left<=0?' — time is up':' — '+Math.ceil(left/60000)+' min left')}).join('<br>')+'<br><small>Open Active rentals to send the WhatsApp reminder.</small>':''}
+function tick(){renderDash();renderAct();checkAlerts()}
+$('stats').onclick=function(e){var b=e.target.closest('[data-go]');if(b)go(b.dataset.go)};
+$('dashGoSet').onclick=function(){go('set')};
+$('dashGoNew').onclick=function(){go('new')};
+$('dashGoAct').onclick=function(){go('act')};
+setInterval(function(){if(!$('modal').classList.contains('on'))tick();else{renderDash();checkAlerts()}},1000);
+
+// daybook
+var dbDate=today();
+function flows(){var a=[];
+ S.rentals.forEach(function(r){if(!vis(r))return;var es=0;(r.ext||[]).forEach(function(q){es+=q.amt;a.push({ts:q.t,d:'Extension fee – '+r.name,i:q.amt,o:0})});
+  a.push({ts:r.start,d:'Rental fee – '+r.name+' ('+itemsText(r)+')',i:r.fee-es,o:0});
+  a.push({ts:r.start+1,d:'Deposit received – '+r.name,i:r.dep,o:0});
+  if(r.status==='returned')a.push({ts:r.returnedAt,d:'Deposit refunded – '+r.name+(r.ded?' ('+m3(r.ded)+' kept for damage)':''),i:0,o:r.dep-r.ded})});
+ (KF==='all'?S.exp:[]).forEach(function(x){a.push({ts:parseInt(String(x.id).slice(1))||0,day:x.date,d:x.cat+(x.note?' – '+x.note:''),i:0,o:x.amt,ex:1})});
+ a=a.filter(function(x){return x.i||x.o});a.forEach(function(x){if(!x.day)x.day=ld(x.ts)});
+ return a.sort(function(p,q){return p.ts-q.ts})}
+function renderDay(){
+ var open=S.openBal||0,day=[];flows().forEach(function(x){if(x.day<dbDate)open+=x.i-x.o;else if(x.day===dbDate)day.push(x)});
+ var bal=open,ci=0,co=0;
+ var rows=day.map(function(x){bal+=x.i-x.o;ci+=x.i;co+=x.o;return '<tr><td>'+(x.ex?'—':tm(x.ts))+'</td><td>'+esc(x.d)+'</td><td class="pos">'+(x.i?m3(x.i):'')+'</td><td class="neg">'+(x.o?m3(x.o):'')+'</td><td>'+m3(bal)+'</td></tr>'});
+ var held=0,n=0;S.rentals.forEach(function(r){if(!vis(r))return;if(ld(r.start)===dbDate)n++;if(ld(r.start)<=dbDate&&(r.status==='active'||ld(r.returnedAt)>dbDate))held+=r.dep});
+ $('dbDate').value=dbDate;
+ if(document.activeElement!==$('dbOpen'))$('dbOpen').value=S.openBal||'';
+ $('dbStats').innerHTML=[['Opening balance',m3(open),''],['Cash in',m3(ci),''],['Cash out',m3(co),''],['Closing balance',m3(bal),'y'],['Deposits held (in closing)',m3(held),''],['Rentals started',n,'']].map(function(c){return '<div class="stat '+c[2]+'"><small>'+c[0]+'</small><strong>'+c[1]+'</strong></div>'}).join('');
+ $('dbList').innerHTML=rows.length?'<table><tr><th>Time</th><th>Details</th><th>Cash in</th><th>Cash out</th><th>Balance</th></tr>'+rows.join('')+'</table>':'<div class="empty">No transactions on this day.</div>';
+ $('dbShare').href='https://wa.me/?text='+encodeURIComponent('Beach Bro daybook – '+dbDate+'\nOpening: '+m3(open)+'\nCash in: '+m3(ci)+'\nCash out: '+m3(co)+'\nClosing: '+m3(bal)+'\nRentals started: '+n)}
+function dbMove(n){var d=new Date(dbDate+'T12:00:00');d.setDate(d.getDate()+n);dbDate=ld(d.getTime());renderDay()}
+$('dbPrev').onclick=function(){dbMove(-1)};$('dbNext').onclick=function(){dbMove(1)};
+$('dbToday').onclick=function(){dbDate=today();renderDay()};
+$('dbDate').onchange=function(){if(this.value){dbDate=this.value;renderDay()}};
+$('dbOpen').onchange=function(){S.openBal=Math.max(0,parseFloat(this.value)||0);save();renderDay()};
+
+// expenses
+function renderExp(){
+ var td=today(),mo=td.slice(0,7),dsum=0,msum=0,tsum=0,sal=0;
+ S.exp.forEach(function(x){tsum+=x.amt;if(x.date===td)dsum+=x.amt;if(x.date.slice(0,7)===mo){msum+=x.amt;if(x.cat==='Staff salary')sal+=x.amt}});
+ var inc=0;S.rentals.forEach(function(r){if(ld(r.start).slice(0,7)===mo)inc+=r.fee});
+ $('expStats').innerHTML=[['Today',m3(dsum)+'',''],['This month',m3(msum)+'',''],['Salaries this month',m3(sal)+'','y'],['Income this month',m3(inc)+'',''],['Profit this month',m3(inc-msum)+'','']].map(function(s){return '<div class="stat '+s[2]+'"><small>'+s[0]+'</small><strong>'+s[1]+'</strong></div>'}).join('');
+ var l=S.exp.slice().sort(function(a,b){return a.date<b.date?1:-1});
+ $('expList').innerHTML=l.length?'<table><tr><th>Date</th><th>Category</th><th>Note</th><th>Amount</th><th></th></tr>'+l.map(function(x){return '<tr><td>'+x.date+'</td><td>'+esc(x.cat)+'</td><td>'+esc(x.note)+'</td><td>'+m3(x.amt)+'</td><td><button class="btn gh" data-d="'+x.id+'" aria-label="Delete expense">✕</button></td></tr>'}).join('')+'</table>':'<div class="empty">No expenses yet. Add salaries, repairs and supplies above.</div>'}
+$('ed').value=today();
+$('addExp').onclick=function(){var a=parseFloat($('ea').value);if(!(a>0))return;
+ S.exp.push({id:'E'+Date.now(),cat:$('ec').value,amt:a,date:$('ed').value||today(),note:$('en').value.trim()});save();$('ea').value='';$('en').value='';renderExp();renderDash()};
+$('expList').onclick=function(e){if(e.target.dataset.d){S.exp=S.exp.filter(function(x){return x.id!==e.target.dataset.d});save();renderExp()}};
+
+// settings
+function renderDur(){
+ $('durT').innerHTML='<tr><th>Label</th><th>Duration (hrs)</th><th>Charged as (hrs)</th><th></th></tr>'+S.durs.map(function(d,i){return '<tr><td><input value="'+esc(d.l)+'" data-di="'+i+'" data-df="l" style="min-width:120px" aria-label="Label"></td><td><input type="number" min="0.25" step="0.25" value="'+d.h+'" data-di="'+i+'" data-df="h" style="min-width:80px" aria-label="Duration in hours"></td><td><input type="number" min="0" step="0.25" value="'+d.m+'" data-di="'+i+'" data-df="m" style="min-width:80px" aria-label="Charged as hours"></td><td><button class="btn gh" data-ddel="'+i+'">Remove</button></td></tr>'}).join('')}
+$('durT').onchange=function(e){var d=e.target.dataset;if(d.di===undefined)return;var x=S.durs[+d.di],v=e.target.value;
+ if(d.df==='l'){v=v.trim();if(!v){renderDur();return}x.l=v}
+ else{v=parseFloat(v);if(isNaN(v)||(d.df==='h'&&v<=0)||v<0){renderDur();return}
+  if(d.df==='h'&&S.durs.some(function(q,j){return j!==+d.di&&q.h===v})){$('dErr').textContent='Another duration already uses '+v+' hours.';renderDur();return}
+  x[d.df]=v}
+ $('dErr').textContent='';S.durs.sort(function(a,b){return a.h-b.h});save();renderDur();drawPick2()};
+$('durT').onclick=function(e){var i=e.target.dataset.ddel;if(i===undefined)return;
+ if(S.durs.length<2){$('dErr').textContent='Keep at least one duration.';return}
+ S.durs.splice(+i,1);save();$('dErr').textContent='';renderDur();drawPick2()};
+$('addDur').onclick=function(){var l=$('dl').value.trim(),h=parseFloat($('dh').value),m=$('dm').value===''?h:parseFloat($('dm').value);
+ if(!l||isNaN(h)||h<=0||isNaN(m)||m<0){$('dErr').textContent='Enter a label and a duration in hours (0.5 = 30 minutes).';return}
+ if(S.durs.some(function(q){return q.h===h})){$('dErr').textContent='A '+h+'-hour duration already exists.';return}
+ S.durs.push({h:h,l:l,m:m});S.durs.sort(function(a,b){return a.h-b.h});save();
+ ['dl','dh','dm'].forEach(function(i){$(i).value=''});$('dErr').textContent='';renderDur();drawPick2()};
+var PALS={ocean:{n:'Ocean',h:193,l:40,c:'#ff6247'},palm:{n:'Palm green',h:150,l:32,c:'#e8590c'},sunset:{n:'Sunset',h:14,l:48,c:'#0b8fb0'},violet:{n:'Violet',h:262,l:46,c:'#e0457b'},navy:{n:'Navy',h:220,l:40,c:'#d97706'},rose:{n:'Rose',h:338,l:46,c:'#0f9d8a'}};
+var MODES=[['auto','Auto'],['light','Light'],['dark','Dark']];
+function applyTheme(){var t=S.theme||{pal:'ocean',mode:'auto'},P=PALS[t.pal]||PALS.ocean,h=P.h,
+ dark=t.mode==='dark'||(t.mode!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches),
+ v=dark?{'--bg':'hsl('+h+',60%,11%)','--card':'hsl('+h+',50%,17%)','--ink':'hsl('+h+',60%,96%)','--mut':'hsl('+h+',30%,72%)','--line':'hsl('+h+',40%,27%)','--soft':'hsl('+h+',50%,22%)','--warn':'#4a3d12','--bad':'#552a22','--teal-d':'hsl('+h+',70%,72%)'}:{'--bg':'#fffaf0','--card':'#fff','--ink':'hsl('+h+',70%,16%)','--mut':'hsl('+h+',20%,40%)','--line':'#e6dcc4','--soft':'hsl('+h+',70%,94%)','--warn':'#fff1d6','--bad':'#ffe3dd','--teal-d':'hsl('+h+',80%,26%)'};
+ v['--teal']='hsl('+h+',85%,'+P.l+'%)';v['--acc']=P.c;
+ var st=document.documentElement.style;for(var k in v)st.setProperty(k,v[k])}
+function renderTheme(){var t=S.theme||{pal:'ocean',mode:'auto'};
+ $('pals').innerHTML=Object.keys(PALS).map(function(k){var P=PALS[k];return '<button type="button" class="chip'+(t.pal===k?' on':'')+'" data-p="'+k+'"><span class="sw" style="background:hsl('+P.h+',85%,'+P.l+'%)"></span>'+P.n+'</button>'}).join('');
+ $('modes').innerHTML=MODES.map(function(m){return '<button type="button" class="chip'+(t.mode===m[0]?' on':'')+'" data-m="'+m[0]+'">'+m[1]+'</button>'}).join('')}
+function setTheme(k,v){S.theme=S.theme||{pal:'ocean',mode:'auto'};S.theme[k]=v;save();applyTheme();renderTheme()}
+$('pals').onclick=function(e){var b=e.target.closest('[data-p]');if(b)setTheme('pal',b.dataset.p)};
+$('modes').onclick=function(e){var b=e.target.closest('[data-m]');if(b)setTheme('mode',b.dataset.m)};
+$('themeBtn').onclick=function(){go('set');$('appearance').scrollIntoView({block:'start'})};
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme)}catch(e){}
+function renderSet(){renderKS();renderLang();renderTheme();renderDur();
+ $('setT').innerHTML='<tr><th>Icon</th><th>Product</th><th>Total stock</th><th>Price/hr</th><th>Deposit</th><th></th></tr>'+S.inv.map(function(x){return '<tr><td><input value="'+esc(x.e)+'" maxlength="4" data-s="'+x.id+'" data-f="e" style="width:64px;text-align:center" aria-label="Icon"></td><td><input value="'+esc(x.n)+'" data-s="'+x.id+'" data-f="n" style="min-width:150px" aria-label="Product name"></td>'+['t','p','d'].map(function(f){return '<td><input type="number" min="0" step="'+1+'" value="'+x[f]+'" data-s="'+x.id+'" data-f="'+f+'" style="min-width:76px" aria-label="'+esc(x.n)+' '+f+'"></td>'}).join('')+'<td><button class="btn gh" data-del="'+x.id+'" aria-label="Remove '+esc(x.n)+'">Remove</button></td></tr>'}).join('')}
+$('addProd').onclick=function(){var n=$('pn').value.trim(),t=parseInt($('pt').value),p=parseFloat($('pp').value),d=parseFloat($('pd').value)||0;
+ if(!n||isNaN(t)||t<0||isNaN(p)||p<0){$('pErr').textContent='Enter a product name, total stock and price per hour.';return}
+ S.inv.push({id:'p'+Date.now(),n:n,e:$('pe').value.trim()||'🏖️',t:t,p:p,d:d});save();
+ ['pn','pe','pt','pp','pd'].forEach(function(i){$(i).value=''});$('pErr').textContent='';renderSet();drawPick();calc(true);renderDash()};
+$('setT').onclick=function(e){var id=e.target.dataset.del;if(!id)return;var x=inv(id);
+ if(used(id)>0){$('pErr').textContent=x.n+' is out on an active rental. Remove it after it is returned.';return}
+ if(S.inv.length<2){$('pErr').textContent='Keep at least one product.';return}
+ S.inv=S.inv.filter(function(q){return q.id!==id});save();$('pErr').textContent='';renderSet();drawPick();calc(true);renderDash()}
+$('setT').onchange=function(e){var d=e.target.dataset;if(d.s){var v=e.target.value;if(d.f==='n'||d.f==='e'){v=v.trim();if(!v)return}else v=parseFloat(v)||0;inv(d.s)[d.f]=v;save();drawPick();calc(true);renderDash()}};
+
+applyTheme();drawPick();calc(true);go('dash');
+// ---- login gate, roles, shared database
+fillCk();
+function gate(t,pp,btns){$('gate').style.display='flex';$('gPad').style.display='none';$('gT').textContent=t;$('gP').textContent=pp;$('gA').innerHTML=(btns||[]).map(function(b){return '<button type="button" class="btn'+(b[2]||'')+'" data-k="'+b[0]+'">'+esc(b[1])+'</button>'}).join('')}
+function asOwner(){ME={id:PLAT.id,name:PLAT.name,owner:true};STAFFID=''}
+function gateKiosk(){gate('Welcome'+(ME.name?', '+ME.name:''),'Choose the kiosk this phone is working at.',KS().filter(function(k){return k.on!==0}).map(function(k){return [k.id,k.name,'']}).concat([['all','Owner – all kiosks',' co']],LOCAL?[]:[['pin','Staff login (code)',' gh']]))}
+var pin='',tries=0,lockUntil=0;
+function drawDots(){$('gDots').innerHTML=[0,1,2,3].map(function(i){return '<i class="'+(i<pin.length?'f':'')+'"></i>'}).join('')}
+function gatePin(msg){pin='';gate('Staff login',msg||'Enter your 4-digit code.',PLAT.admin?[['owner','Owner login',' gh']]:[]);$('gPad').style.display='block';drawDots()}
+$('gKeys').innerHTML=['1','2','3','4','5','6','7','8','9','C','0','⌫'].map(function(k){return '<button type="button" data-d="'+k+'" aria-label="'+(k==='C'?'Clear':k==='⌫'?'Delete':k)+'">'+k+'</button>'}).join('');
+$('gKeys').onclick=function(e){var d=e.target.dataset.d;if(!d)return;if(d==='C')pin='';else if(d==='⌫')pin=pin.slice(0,-1);else if(pin.length<4)pin+=d;drawDots();if(pin.length===4)tryPin()};
+async function hashPin(id,p){var t='bb:'+id+':'+p;try{var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return Array.prototype.map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}catch(e){var h=5381;for(var i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))|0;return 'x'+h}}
+async function tryPin(){var p=pin;pin='';
+ if(Date.now()<lockUntil){gatePin('Too many tries. Wait '+Math.ceil((lockUntil-Date.now())/1000)+' seconds.');return}
+ if(!staffReady){gatePin('Loading staff list. Try again in a moment.');return}
+ var hit=null;for(var i=0;i<STAFF.length;i++){var x=STAFF[i];if(x.on!==0&&x.h&&await hashPin(x.id,p)===x.h){hit=x;break}}
+ if(!hit){tries++;if(tries>=5){tries=0;lockUntil=Date.now()+30000;gatePin('Too many tries. Wait 30 seconds.')}else gatePin('Wrong code. Try again.');return}
+ if(!kioskOn(hit.kiosk)){gatePin('Your kiosk is switched off. Ask the owner.');return}
+ tries=0;STAFFID=hit.id;ME={id:hit.id,name:hit.name,owner:false};S.exp=[];chooseKiosk(hit.kiosk)}
+$('gA').onclick=function(e){var k=e.target.dataset.k;if(!k)return;
+ if(k==='owner'){if(PLAT.admin){asOwner();gateKiosk()}}
+ else if(k==='pin'){ME={id:null,name:'',owner:false};STAFFID='';gatePin()}
+ else chooseKiosk(k)};
+$('who').onclick=function(){if(ME.owner)gateKiosk();else{ME={id:null,name:'',owner:false};STAFFID='';S.exp=[];gatePin()}};
+function updateWho(){fillCk();document.body.classList.toggle('staff',!ME.owner);var w=$('who');w.style.display='inline-block';w.textContent=(ME.name||'Staff')+' · '+(KF==='all'?'All kiosks':kname(KF))+(ME.owner?' ⇄':' 🔒');$('ckw').style.display=ME.owner?'block':'none';if(ME.owner&&KF!=='all')$('ck').value=KF}
+function chooseKiosk(k){if(k==='all'&&!ME.owner)return;KF=k;if(ME.owner){try{localStorage.setItem('bb_kiosk',k)}catch(e){}}
+ $('gate').style.display='none';updateWho();buildNav();if(!started&&!LOCAL)startDb();if(ME.owner&&!ownerSubs&&!LOCAL)subOwner();go('dash')}
+function dberr(e){syncMsg('Data connection problem ('+((e&&e.code)||'error')+'). Reload the page.')}
+function refreshViews(){tick();if($('v-day').classList.contains('on'))renderDay();if($('v-exp').classList.contains('on'))renderExp()}
+function resolveNames(){if(!U)return;var ids=[];S.rentals.forEach(function(r){var i=r.by;if(i&&!NAMES[i]&&ids.indexOf(i)<0)ids.push(i)});if(!ids.length)return;
+ U.profiles(ids).then(function(ps){ids.forEach(function(i){if(!NAMES[i])NAMES[i]=(ps[i]&&ps[i].name)||''});tick()})}
+function rentSnap(sn){var old={};S.rentals.forEach(function(r){old[r.id]=r});
+ S.rentals=sn.docs.map(function(d){var n=JSON.parse(JSON.stringify(d.data())),o=old[n.id];
+  if(o){if(JSON.stringify(o)!==JSON.stringify(n)){Object.keys(o).forEach(function(k){delete o[k]});Object.assign(o,n)}n=o}
+  shadow.r[n.id]=JSON.stringify(n);return n}).sort(function(a,b){return b.start-a.start});
+ resolveNames();refreshViews()}
+function expSnap(sn){S.exp=sn.docs.map(function(d){var n=JSON.parse(JSON.stringify(d.data()));shadow.e[n.id]=JSON.stringify(n);return n});refreshViews()}
+function fillCk(){var v=$('ck').value,sv=$('sk').value,o=KS().filter(function(k){return k.on!==0}).map(function(k){return '<option value="'+k.id+'">'+esc(k.name)+'</option>'}).join('');$('ck').innerHTML=o;$('sk').innerHTML=o;if(v)$('ck').value=v;if(sv)$('sk').value=sv}
+function cfgSnap(sn){
+ if(!sn.exists){if(ME.owner&&!sn.metadata.fromCache){cfgReady=true;shadow.c='';flushCfg()}return}
+ if(ME.owner&&(pend>0||cfgDirty))return;
+ var c=sn.data();CFG.forEach(function(k){if(c[k]!==undefined)S[k]=JSON.parse(JSON.stringify(c[k]))});
+ var j=cfgJson();cfgReady=true;if(j===shadow.c)return;shadow.c=j;
+ fillCk();if(started)updateWho();drawPick2();refreshViews();if($('v-set').classList.contains('on'))renderSet()}
+var STAFF=[],staffReady=false;
+function startDb(){started=true;dbh=DBN;S.rentals=[];S.exp=[];
+ dbh.doc('config/main').onSnapshot(cfgSnap,dberr);
+ dbh.collection('rentals').onSnapshot(rentSnap,dberr)}
+function subOwner(){ownerSubs=true;dbh.collection('expenses').onSnapshot(expSnap,dberr)}
+function staffSnap(sn){STAFF=sn.docs.map(function(d){return JSON.parse(JSON.stringify(d.data()))});staffReady=true;STAFF.forEach(function(x){NAMES[x.id]=x.name});
+ if(STAFFID){var me=STAFF.filter(function(x){return x.id===STAFFID})[0];
+  if(!me||me.on===0||!kioskOn(me.kiosk)){ME={id:null,name:'',owner:false};STAFFID='';S.exp=[];gatePin('Your access was changed. Enter your code again.')}
+  else if(KF!==me.kiosk){KF=me.kiosk;updateWho();refreshViews()}}
+ if($('v-set').classList.contains('on'))renderStaff();tick()}
+function sget(id){var x=STAFF.filter(function(q){return q.id===id})[0];return x?JSON.parse(JSON.stringify(x)):null}
+function putStaff(x){STAFF=STAFF.filter(function(q){return q.id!==x.id}).concat([x]);wr(function(){return dbh.doc('staff/'+x.id).set(x)});renderStaff()}
+async function pinTaken(p,ex){for(var i=0;i<STAFF.length;i++){var x=STAFF[i];if(x.id!==ex&&x.h&&await hashPin(x.id,p)===x.h)return true}return false}
+function renderStaff(){$('stList').innerHTML=STAFF.length?STAFF.map(function(x){return '<div class="ksrow"><span class="who">'+esc(x.name)+(x.on===0?' (off)':'')+'</span><select data-sk="'+x.id+'" aria-label="Kiosk for '+esc(x.name)+'">'+KS().filter(function(k){return k.on!==0||k.id===x.kiosk}).map(function(k){return '<option value="'+k.id+'"'+(k.id===x.kiosk?' selected':'')+'>'+esc(k.name)+'</option>'}).join('')+'</select><input data-sp="'+x.id+'" inputmode="numeric" maxlength="4" placeholder="New code" aria-label="New code for '+esc(x.name)+'" style="flex:0 1 110px"><button type="button" class="btn gh" data-ss="'+x.id+'">Set code</button><button type="button" class="btn gh" data-st="'+x.id+'">'+(x.on===0?'Turn on':'Turn off')+'</button></div>'}).join(''):'<div class="empty">No staff yet. Create the first one above.</div>'}
+$('addS').onclick=async function(){var n=$('sn').value.trim(),p=$('sp').value.trim(),k=$('sk').value;
+ if(!n||!/^\d{4}$/.test(p)||!k){$('sErr').textContent='Enter a name, a 4-digit code and a kiosk.';return}
+ if(await pinTaken(p,'')){$('sErr').textContent='That code is already used by someone. Choose another.';return}
+ var id='S'+Date.now();putStaff({id:id,name:n,kiosk:k,on:1,h:await hashPin(id,p)});$('sn').value='';$('sp').value='';$('sErr').textContent=''};
+$('stList').onchange=function(e){var id=e.target.dataset.sk;if(!id)return;var x=sget(id);if(x){x.kiosk=e.target.value;putStaff(x)}};
+$('stList').onclick=async function(e){var d=e.target.dataset,x;
+ if(d.st){x=sget(d.st);if(x){x.on=x.on===0?1:0;putStaff(x)}}
+ if(d.ss){var inp=document.querySelector('[data-sp="'+d.ss+'"]'),p=inp.value.trim();
+  if(!/^\d{4}$/.test(p)){$('sErr').textContent='The new code must be 4 digits.';return}
+  if(await pinTaken(p,d.ss)){$('sErr').textContent='That code is already used by someone. Choose another.';return}
+  x=sget(d.ss);if(x){x.h=await hashPin(x.id,p);$('sErr').textContent='';putStaff(x)}}};
+function copyK(){S.kiosks=KS().map(function(k){return {id:k.id,name:k.name,on:k.on===0?0:1}})}
+function renderKS(){
+ $('ksList').innerHTML=KS().map(function(k){return '<div class="ksrow"><input data-kn="'+k.id+'" value="'+esc(k.name)+'" aria-label="Kiosk name"><button type="button" class="btn gh" data-kt="'+k.id+'">'+(k.on===0?'Inactive – turn on':'Active – turn off')+'</button></div>'}).join('');
+ renderStaff()}
+$('ksList').onchange=function(e){var id=e.target.dataset.kn;if(!id)return;var v=e.target.value.trim();if(!v){renderKS();return}copyK();kfind(id).name=v;save();fillCk();updateWho();refreshViews()};
+$('ksList').onclick=function(e){var id=e.target.dataset.kt;if(!id)return;copyK();var k=kfind(id);k.on=k.on===0?1:0;save();fillCk();renderKS()};
+$('addK').onclick=function(){var n=$('kn').value.trim();if(!n)return;copyK();var m=0;S.kiosks.forEach(function(k){m=Math.max(m,+String(k.id).slice(1)||0)});S.kiosks.push({id:'K'+(m+1),name:n,on:1});$('kn').value='';save();fillCk();renderKS()};
+function startLocal(){LOCAL=true;PLAT={id:'local',name:'',admin:true};asOwner();syncMsg('Offline mode: data is saved only on this phone and is not shared with other kiosks. Open the Beach Bro link to share data.');gateKiosk()}
+async function initAuth(){
+ gate('Connecting…','Signing you in.',[]);
+ var t=setTimeout(function(){$('gP').textContent='Still connecting. Check your internet connection.'},10000),db=null;
+ try{if(window.claude&&claude.use){U=await claude.use('user');db=await claude.use('db')}}catch(e){}
+ clearTimeout(t);
+ if(!db||!U){startLocal();return}
+ var me=await U.me();ME={id:me.id,name:me.name||'',owner:!!me.canEdit};
+ if(!ME.id){gate('Sign in needed','We could not identify your account. Sign in and reload this page.',[]);return}
+ if((await U.can('data.write'))===false){gate('View-only access','Your account can look but not make changes. Ask the owner to give you Contributor access.',[]);return}
+ DBN=db;PLAT={id:me.id,name:me.name||'',admin:!!me.canEdit};
+ DBN.collection('staff').onSnapshot(staffSnap,dberr);
+ if(PLAT.admin){asOwner();gateKiosk()}
+ else{ME={id:null,name:'',owner:false};gatePin()}}
+initAuth();
+})();
+</script></body></html>
